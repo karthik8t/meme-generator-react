@@ -2,7 +2,8 @@ import {useEffect, useRef} from "react";
 import {Honk} from "next/font/google";
 
 const memeFont = Honk({
-    weight: '400'
+    weight: '400',
+    preload: false,
 })
 
 type Props = {
@@ -24,6 +25,8 @@ export default function Canvas({width, height, header, footer, src}: Props) {
         img.height = height
         img.onload = () => {
             const canvas = canvasRef.current;
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const context = canvas.getContext('2d');
             context.drawImage(img, 0, 0, width, height);
             context.font = `28px ${memeFont.style.fontFamily}`;

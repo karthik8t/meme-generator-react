@@ -18,10 +18,12 @@ export default function MemeForm({onGenerate, defaultValues, onRefresh}: MemeFor
     const form = useForm({
         resolver: zodResolver(memeSchema),
         defaultValues: {
-            header: defaultValues?.header,
-            footer: defaultValues?.footer
+            header: defaultValues?.header || "",
+            footer: defaultValues?.footer || ""
         }
     })
+
+    type FormName = 'header' | 'footer';
 
     const onSubmit = (values: z.infer<typeof memeSchema>) => {
         console.log(values)
@@ -35,7 +37,7 @@ export default function MemeForm({onGenerate, defaultValues, onRefresh}: MemeFor
                     {name: "header", label: "Meme Header", description: "This is placed at the top of Meme"},
                     {name: "footer", label: "Meme Footer", description: "This is placed at the bottom of Meme"}
                 ].map((item, index) =>
-                    <FormField control={form.control} name={item.name} key={index} render={({field}) => (
+                    <FormField control={form.control} name={item.name as unknown as FormName} key={index} render={({field}) => (
                         <FormItem>
                             <FormLabel>{item.label}</FormLabel>
                             <FormControl>

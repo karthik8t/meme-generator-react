@@ -24,6 +24,7 @@ export default function Home() {
                 setMemeUrls(urls)
             })
     }, []);
+
     return (
         <>
             <Header/>
@@ -35,7 +36,7 @@ export default function Home() {
                     <CardContent className={"w-10/12"}>
                         <MemeForm defaultValues={memeData}
                                   onGenerate={(data: z.infer<typeof memeSchema>) => setMemeData(data)}
-                                  onRefresh={() => setCurrentMeme(memeUrls[[Math.floor(Math.random() * memeUrls.length)]])}/>
+                                  onRefresh={() => setCurrentMeme(memeUrls[Math.floor(Math.random() * memeUrls.length)])}/>
                     </CardContent>
                     <CardFooter className={"w-full flex justify-center"}>
                         <Canvas width={300} height={300} header={memeData.header} footer={memeData.footer}

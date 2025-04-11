@@ -2,7 +2,8 @@ import Image from "next/image";
 import {Julius_Sans_One} from "next/font/google";
 
 const juliusFont = Julius_Sans_One({
-    weight: '400'
+    weight: '400',
+    preload: false,
 })
 
 export function Header() {
